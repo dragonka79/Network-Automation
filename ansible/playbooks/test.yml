@@ -1,0 +1,11 @@
+---
+- name: Test network_cli
+  hosts: management
+  connection: network_cli
+  gather_facts: false
+
+  tasks:
+    - name: Show uptime
+      cisco.ios.ios_command:
+        commands:
+          - show version | include uptime

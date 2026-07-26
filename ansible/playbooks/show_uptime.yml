@@ -1,0 +1,10 @@
+---
+- name: Check device uptime
+  hosts: management
+  gather_facts: false
+
+  tasks:
+    - name: Show uptime
+      cisco.ios.ios_command:
+        commands:
+          - show version | include uptime

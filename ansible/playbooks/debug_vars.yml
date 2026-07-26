@@ -1,0 +1,14 @@
+---
+- name: Debug variables
+  hosts: management
+  gather_facts: false
+
+  tasks:
+    - debug:
+        var: group_names
+
+    - debug:
+        var: ansible_connection
+
+    - debug:
+        var: ansible_network_os
