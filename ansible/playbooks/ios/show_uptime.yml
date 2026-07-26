@@ -1,6 +1,6 @@
 ---
 - name: Check device uptime
-  hosts: management
+  hosts: core
   gather_facts: false
 
   tasks:

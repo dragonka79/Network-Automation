@@ -1,0 +1,15 @@
+---
+- name: Show interfaces
+  hosts: ios_devices
+  gather_facts: false
+
+  tasks:
+    - name: Get interface status
+      cisco.ios.ios_command:
+        commands:
+          - show ip interface brief
+      register: output
+
+    - name: Display output
+      debug:
+        var: output.stdout_lines

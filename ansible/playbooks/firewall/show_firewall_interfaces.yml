@@ -1,0 +1,15 @@
+---
+- name: Show firewall interfaces
+  hosts: firewall
+  gather_facts: false
+
+  tasks:
+    - name: Get interface status
+      cisco.asa.asa_command:
+        commands:
+          - show interface ip brief
+      register: output
+
+    - name: Display output
+      debug:
+        var: output.stdout_lines
