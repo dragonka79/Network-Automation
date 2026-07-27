@@ -2,11 +2,11 @@ ansible_connection: network_cli
 ansible_network_os: cisco.ios.ios
 
 ansible_user: zolcs
-ansible_password: berkaper
+# ansible_password: XXX
 
 # ansible_become: true
 # ansible_become_method: enable
-# ansible_become_password: berkaper
+# ansible_become_password: XXX
 
 # ansible_ssh_common_args: '-o KexAlgorithms=+diffie-hellman-group14-sha1 -o HostKeyAlgorithms=+ssh-rsa'
 # ansible_network_cli_ssh_type: libssh
