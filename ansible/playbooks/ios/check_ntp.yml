@@ -1,0 +1,29 @@
+---
+- name: Check NTP configuration and status
+  hosts: ios_devices
+  gather_facts: false
+
+  tasks:
+    - name: Collect NTP information
+      cisco.ios.ios_command:
+        commands:
+          - show running-config | include ntp
+          - show ntp status
+          - show ntp associations
+      register: ntp_output
+
+    - name: Display NTP configuration
+      debug:
+        msg: |
+          ==========================================
+          Host: {{ inventory_hostname }}
+          ==========================================
+
+          --- Running Configuration ---
+          {{ ntp_output.stdout[0] }}
+
+          --- NTP Status ---
+          {{ ntp_output.stdout[1] }}
+
+          --- NTP Associations ---
+          {{ ntp_output.stdout[2] }}
