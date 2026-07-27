@@ -1,21 +1,3 @@
-# ---
-# - name: Configure NTP on Cisco IOS devices
-#   hosts: ios_devices
-#   gather_facts: false
-
-#   tasks:
-#     - name: Configure NTP server
-#       cisco.ios.ios_config:
-#         lines:
-#           - ntp server 10.0.30.50
-
-#     - name: Save configuration
-#       cisco.ios.ios_config:
-#         save_when: modified # Ansible checks whether the running configuration differs from the startup configuration. 
-#                             This is common with some IOSv/vIOS images in EVE-NG. The configuration is still active in running-config;
-#                             the issue is only the startup-config check.
-
-
 ---
 - name: Configure NTP on Cisco IOS devices
   hosts: ios_devices
@@ -26,6 +8,12 @@
       cisco.ios.ios_config:
         lines:
           - ntp server 10.0.30.50
+
+#     - name: Save configuration
+#       cisco.ios.ios_config:
+#         save_when: modified # Ansible checks whether the running configuration differs from the startup configuration. 
+#                             This is common with some IOSv/vIOS images in EVE-NG. The configuration is still active in running-config;
+#                             the issue is only the startup-config check.
 
     - name: Save configuration
       cisco.ios.ios_command:
