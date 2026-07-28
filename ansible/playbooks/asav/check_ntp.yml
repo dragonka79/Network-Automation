@@ -1,0 +1,17 @@
+---
+- name: Check ASAv NTP
+  hosts: firewall
+  gather_facts: false
+
+  tasks:
+    - name: Show NTP configuration
+      cisco.asa.asa_command:
+        commands:
+          - show running-config ntp
+          - show ntp status
+          - show ntp associations
+      register: ntp_output
+
+    - name: Display NTP information
+      debug:
+        var: ntp_output.stdout_lines

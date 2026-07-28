@@ -1,0 +1,11 @@
+---
+- name: Configure NTP on ASAv
+  hosts: firewall
+  gather_facts: false
+
+  tasks:
+    - name: Configure NTP server
+      cisco.asa.asa_config:
+        lines:
+          - ntp server 10.0.30.50
+        save: true
