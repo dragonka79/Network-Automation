@@ -1,0 +1,16 @@
+---
+- name: Verify DNS configuration on Cisco IOS devices
+  hosts: ios_devices
+  gather_facts: false
+
+  tasks:
+    - name: Collect DNS information
+      cisco.ios.ios_command:
+        commands:
+          - show running-config | include ip domain|ip name-server
+          - show hosts
+      register: dns_output
+
+    - name: Display DNS information
+      debug:
+        var: dns_output.stdout_lines

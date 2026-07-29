@@ -1,0 +1,16 @@
+---
+- name: Verify DNS configuration on Cisco ASAv
+  hosts: firewall
+  gather_facts: false
+
+  tasks:
+    - name: Collect DNS information
+      cisco.asa.asa_command:
+        commands:
+          - show running-config dns
+          - show running-config domain-name
+      register: dns_output
+
+    - name: Display DNS information
+      debug:
+        var: dns_output.stdout_lines

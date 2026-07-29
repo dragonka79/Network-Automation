@@ -1,0 +1,23 @@
+---
+- name: Configure DNS on Cisco ASAv
+  hosts: firewall
+  gather_facts: false
+
+  tasks:
+    - name: Configure DNS server
+      cisco.asa.asa_config:
+        parents:
+          - dns server-group DefaultDNS
+        lines:
+          - name-server 10.0.30.50
+
+    - name: Configure DNS lookup and domain
+      cisco.asa.asa_config:
+        lines:
+          - dns domain-lookup management
+          - domain-name lab.local
+
+    - name: Save configuration
+      cisco.asa.asa_command:
+        commands:
+          - write memory

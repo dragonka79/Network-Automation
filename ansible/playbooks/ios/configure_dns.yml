@@ -1,0 +1,16 @@
+---
+- name: Configure DNS on Cisco IOS devices
+  hosts: ios_devices
+  gather_facts: false
+
+  tasks:
+    - name: Configure domain name and DNS server
+      cisco.ios.ios_config:
+        lines:
+          - ip domain name lab.local
+          - ip name-server 10.0.30.50
+
+    - name: Save configuration
+      cisco.ios.ios_command:
+        commands:
+          - write memory
