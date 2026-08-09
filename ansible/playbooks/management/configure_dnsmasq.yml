@@ -39,7 +39,6 @@
         state: restarted
 
   tasks:
-
     - name: Install dnsmasq
       ansible.builtin.apt:
         name: dnsmasq
@@ -63,15 +62,12 @@
         content: |
           listen-address=10.0.30.50
           bind-interfaces
-
           domain=lab.local
           local=/lab.local/
-
           server=1.1.1.1
           server=8.8.8.8
-
           addn-hosts=/etc/dnsmasq/lab.hosts
-      notify: Restart dnsmasq
+        notify: Restart dnsmasq
 
     - name: Configure forward DNS records
       ansible.builtin.copy:
@@ -80,8 +76,8 @@
         group: root
         mode: '0644'
         content: |
-          10.0.30.1    dist-1.lab.local
-          10.0.30.2    dist-2.lab.local
+          10.0.30.2    dist-1.lab.local
+          10.0.30.3    dist-2.lab.local
           10.0.30.11   access-1.lab.local
           10.0.30.12   access-2.lab.local
           10.0.30.21   mgmt-1.lab.local
@@ -90,7 +86,7 @@
           10.0.30.101  core-1.lab.local
           10.0.30.102  core-2.lab.local
           10.0.30.201  fw-1.lab.local
-      notify: Restart dnsmasq
+        notify: Restart dnsmasq
 
     - name: Configure reverse DNS records
       ansible.builtin.copy:
@@ -99,22 +95,17 @@
         group: root
         mode: '0644'
         content: |
-          ptr-record=1.30.0.10.in-addr.arpa,dist-1.lab.local
-          ptr-record=2.30.0.10.in-addr.arpa,dist-2.lab.local
-
+          ptr-record=2.30.0.10.in-addr.arpa,dist-1.lab.local
+          ptr-record=3.30.0.10.in-addr.arpa,dist-2.lab.local
           ptr-record=11.30.0.10.in-addr.arpa,access-1.lab.local
           ptr-record=12.30.0.10.in-addr.arpa,access-2.lab.local
-
           ptr-record=21.30.0.10.in-addr.arpa,mgmt-1.lab.local
           ptr-record=22.30.0.10.in-addr.arpa,mgmt-2.lab.local
-
           ptr-record=50.30.0.10.in-addr.arpa,ubuntu-mgmt.lab.local
-
           ptr-record=101.30.0.10.in-addr.arpa,core-1.lab.local
           ptr-record=102.30.0.10.in-addr.arpa,core-2.lab.local
-
           ptr-record=201.30.0.10.in-addr.arpa,fw-1.lab.local
-      notify: Restart dnsmasq
+        notify: Restart dnsmasq
 
     - name: Validate dnsmasq configuration
       ansible.builtin.command:
@@ -126,4 +117,3 @@
         name: dnsmasq
         enabled: true
         state: started
-
