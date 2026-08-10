@@ -1,0 +1,48 @@
+---
+- name: Configure rsyslog as network syslog server
+  hosts: ubuntu-mgmt
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Configure rsyslog UDP listener
+      ansible.builtin.copy:
+        dest: /etc/rsyslog.d/10-network-devices.conf
+        owner: root
+        group: root
+        mode: '0644'
+        content: |
+          module(load="imudp")
+          input(type="imudp" port="514")
+
+          template(name="NetworkDeviceLog" type="string"
+                   string="/var/log/network/%HOSTNAME%.log")
+
+          if ($fromhost-ip != "127.0.0.1") then {
+              action(
+                  type="omfile"
+                  dynaFile="NetworkDeviceLog"
+                  createDirs="on"
+                  dirCreateMode="0755"
+              )
+              stop
+          }
+      notify: Restart rsyslog
+
+    - name: Validate rsyslog configuration
+      ansible.builtin.command:
+        cmd: rsyslogd -N1
+      changed_when: false
+
+    - name: Ensure rsyslog is enabled and running
+      ansible.builtin.systemd:
+        name: rsyslog
+        enabled: true
+        state: started
+
+  handlers:
+    - name: Restart rsyslog
+      ansible.builtin.systemd:
+        name: rsyslog
+        state: restarted
+
