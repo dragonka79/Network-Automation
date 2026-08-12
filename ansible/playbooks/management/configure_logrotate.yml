@@ -1,0 +1,48 @@
+---
+- name: Configure log rotation for network syslog
+  hosts: ubuntu-mgmt
+  become: true
+
+  tasks:
+    - name: Ensure logrotate is installed
+      ansible.builtin.apt:
+        name: logrotate
+        state: present
+        update_cache: true
+
+    - name: Ensure network log directory exists
+      ansible.builtin.file:
+        path: /var/log/network
+        state: directory
+        owner: syslog
+        group: adm
+        mode: '0755'
+
+    - name: Ensure network log archive directory exists
+      ansible.builtin.file:
+        path: /var/log/network/archive
+        state: directory
+        owner: syslog
+        group: adm
+        mode: '0755'
+
+    - name: Configure network log rotation
+      ansible.builtin.copy:
+        dest: /etc/logrotate.d/network
+        owner: root
+        group: root
+        mode: '0644'
+        content: |
+          /var/log/network/*.log {
+              daily
+              rotate 7
+              compress
+              delaycompress
+              missingok
+              notifempty
+              dateext
+              dateformat -%Y-%m-%d
+              olddir /var/log/network/archive
+              create 0640 syslog adm
+          }
+
