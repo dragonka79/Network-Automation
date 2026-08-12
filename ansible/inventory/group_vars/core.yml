@@ -1,3 +1,5 @@
 ansible_connection: network_cli
 ansible_network_os: cisco.ios.ios
 
+syslog_server: 10.0.30.50
+syslog_severity: informational
