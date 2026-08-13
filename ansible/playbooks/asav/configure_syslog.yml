@@ -1,0 +1,18 @@
+---
+- name: Configure syslog on firewall
+  hosts: firewall
+  gather_facts: false
+
+  tasks:
+
+    - name: Configure ASA syslog
+      cisco.asa.asa_config:
+        lines:
+          - logging enable
+          - "logging host {{ syslog_source_interface }} {{ syslog_server }} udp/514"
+          - "logging trap {{ syslog_severity }}"
+
+    - name: Save configuration
+      cisco.asa.asa_config:
+        save: yes
+
