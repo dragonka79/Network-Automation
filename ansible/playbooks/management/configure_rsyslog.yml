@@ -20,10 +20,15 @@
 
           if ($fromhost-ip != "127.0.0.1") then {
               action(
-                  type="omfile"
-                  dynaFile="NetworkDeviceLog"
-                  createDirs="on"
-                  dirCreateMode="0755"
+                 type="omfile"
+                 dynaFile="NetworkDeviceLog"
+                 createDirs="on"
+                 fileOwner="syslog"
+                 fileGroup="adm"
+                 fileCreateMode="0640"
+                 dirOwner="syslog"
+                 dirGroup="adm"
+                 dirCreateMode="0750"
               )
               stop
           }
