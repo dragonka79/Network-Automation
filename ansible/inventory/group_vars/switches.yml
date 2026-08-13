@@ -1,0 +1,3 @@
+syslog_source_interface: Vlan30
+syslog_server: ubuntu-mgmt.lab.local
+syslog_severity: informational
