@@ -1,6 +1,6 @@
 # AI-Assisted Network Automation Lab
 
-An experimental network automation lab built with Proxmox, EVE-NG, Python, Ansible, Cisco switches, routers, linux servers and clients
+An experimental network automation lab built with Proxmox, EVE-NG, Python, Ansible, Cisco switches, routers, linux servers and clients.
 
 The project explores how **AI, network telemetry, and automation** can work together to improve network visibility, troubleshooting, and operational efficiency. The initial focus is classic 3-tier campus network design, with an architecture intended to support broader network automation experiments over time.
 
@@ -29,20 +29,20 @@ The project explores how **AI, network telemetry, and automation** can work toge
 
 ## Lab Topology for AdminLan
 
-Layer 2, layer 3 devices and management server in 10.0.30.0/24 VLAN 30
-Automation VM in 10.0.200.0/24 in VLAN 200
-Ubuntu server in 10.0.20.0/24 in VLAN 20
-Ubuntu clients in 10.0.10.0/24 in VLAN 10
+- Layer 2, layer 3 devices and management server in 10.0.30.0/24 VLAN 30.
+- Automation VM in 10.0.200.0/24 in VLAN 200.
+- Ubuntu server in 10.0.20.0/24 in VLAN 20.
+- Ubuntu clients in 10.0.10.0/24 in VLAN 10.
 
 
 ## Current Implementation
 
 - Authenticate and connect from the automation VM to the devices.
-- Retrieve and decode device running configurations, inventory information
-- Running Ansible to retrieve and push configurations
-- NTP,DHCP, rsyslog on Management VM
+- Retrieve and decode device running configurations, inventory information.
+- Running Ansible to retrieve and push configurations.
+- NTP,DHCP, rsyslog on Management VM.
 - Save results and configuration output for analysis.
-- Maintain automation code and lab workflows in version control, GitHub connection
+- Maintain automation code and lab workflows in version control, GitHub connection.
 
 ## Planned Development
 
