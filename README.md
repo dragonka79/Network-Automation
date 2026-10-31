@@ -27,7 +27,7 @@ The project explores how **AI, network telemetry, and automation** can work toge
 | Automation tools | Python 3.10, Ansible 2.17 |
 | AI platform | Local LLMs with Ollama planned for integration |
 
-## Lab Topology for AdminLan
+## Lab Topology for AdminLAN
 
 - Layer 2, layer 3 devices and management server in 10.0.30.0/24 VLAN 30.
 - Automation VM in 10.0.200.0/24 in VLAN 200.
