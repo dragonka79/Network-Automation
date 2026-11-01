@@ -9,7 +9,7 @@ The project explores how **AI, network telemetry, and automation** can work toge
 - **Network automation:** Automate repetitive tasks through APIs, Python, and Ansible.
 - **Telemetry and observability:** Collect and analyze network state, device health, events, and operational data.
 - **Topology awareness:** Build an understanding of network devices, links, routing, and dependencies.
-- **AI-assisted troubleshooting:** Use locally hosted language models to interpret telemetry, correlate symptoms, and help identify root causes.
+- **AI-assisted troubleshooting:** Use **locally hosted, vertical** language models to interpret telemetry, correlate symptoms, and help identify root causes.
 - **Controlled remediation:** Explore AI-assisted corrective actions with validation and safeguards.
 - **Reproducible experiments:** Use virtual network environments to simulate failures, test hypotheses, and evaluate automation workflows.
 
@@ -17,6 +17,7 @@ The project explores how **AI, network telemetry, and automation** can work toge
 
 | Component | Details |
 |---|---|
+| Hardware | CPU E5-2680, 128 GB RAM |
 | Virtualization | Proxmox VE |
 | Network emulation | EVE-NG |
 | Cisco Firewall | ASAv 9.22(1)1 |
@@ -28,13 +29,15 @@ The project explores how **AI, network telemetry, and automation** can work toge
 | Automation tools | Python 3.10, Ansible 2.17 |
 | AI platform | Local LLMs with Ollama planned for integration |
 
-## Lab Topology for AdminLAN
+## Current / Planned VLAN and VM Structure
 
-- Layer 2, layer 3 devices and management server in 10.0.30.0/24 VLAN 30.
-- Automation VM in 10.0.200.0/24 in VLAN 200.
-- Ubuntu server in 10.0.20.0/24 in VLAN 20.
-- Ubuntu clients in 10.0.10.0/24 in VLAN 10.
-
+- VLAN 10 — Users: Two Ubuntu Desktop VMs, generate user traffic.
+- VLAN 20 — Server VLAN: Ubuntu Server VM, containerized application stack.
+- VLAN 30 — OOB Management: Ubuntu Server VM, act as the recovery and management network.
+- VLAN 200 — Automation VM: Ubuntu Server VM; source of truth; Github integration
+- VLAN 201 — AI VM: vertical, local LLMs; Ollama; Dual-NIC for possible rented GPU access
+- VLAN 210 — Telemetry VM: metrics, logs, traces, probes
+- Possible AI VM gateway later on
 
 ## Current Implementation
 
@@ -75,7 +78,8 @@ Network-Automation/
 │   └── backups/ 
     ├── inventory
     ├── playbooks          
-├── configs/             
+├── configs/  
+├── incidents/           # Incident documentation
 ├── pki/                 # PKI-related lab files
 ├── .env                 # Local credentials (not committed)
 ├── .gitignore
