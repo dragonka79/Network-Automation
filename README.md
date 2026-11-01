@@ -19,7 +19,8 @@ The project explores how **AI, network telemetry, and automation** can work toge
 |---|---|
 | Virtualization | Proxmox VE |
 | Network emulation | EVE-NG |
-| Firewall | Cisco Cisco ASAv 9.22(1)1 |
+| Cisco Firewall | ASAv 9.22(1)1 |
+| Fortigate Firewall | FGT-VM64-KVM v8.0.2 |
 | Core routers | Cisco IOSv 15.9(3)M6 |
 | Distribution, access and management switches | Cisco Virtual IOS L2 Experimental Version 15.2 |
 | Automation server VM | Ubuntu 22.04.5 LTS |
@@ -97,7 +98,7 @@ The long-term objective is to explore a network operations workflow in which **t
 
 ## Lab Architecture
 
-The diagram shows the current EVE-NG lab, including the SD-WAN controllers, automation VM, WAN transports, and branch sites.
+The diagram shows the current EVE-NG lab.
 
-![Cisco SD-WAN lab topology](images/aut-lab-topology.png)
+![Cisco Campus lab topology](images/aut-lab-topology.png)
 
