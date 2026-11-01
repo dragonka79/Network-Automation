@@ -1,6 +1,6 @@
 # AI-Assisted Network Automation Lab
 
-An experimental network automation lab built with Proxmox, EVE-NG, Python, Ansible, Cisco switches, routers, linux servers and clients.
+An experimental network automation lab built with Proxmox, EVE-NG, Python, Ansible, Fortigate and Cisco Firewalls, Cisco switches, routers, linux servers and clients.
 
 The project explores how **AI, network telemetry, and automation** can work together to improve network visibility, troubleshooting, and operational efficiency. The initial focus is classic 3-tier campus network design, with an architecture intended to support broader network automation experiments over time.
 
@@ -40,7 +40,7 @@ The project explores how **AI, network telemetry, and automation** can work toge
 
 - Authenticate and connect from the automation VM to the devices.
 - Retrieve and decode device running configurations, inventory information.
-- Running Ansible to retrieve and push configurations.
+- Running python(VS Code) and Ansible to retrieve and push configurations.
 - NTP,DHCP, rsyslog on Management VM.
 - Save results and configuration output for analysis.
 - Maintain automation code and lab workflows in version control, GitHub connection.
