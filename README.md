@@ -104,5 +104,5 @@ The long-term objective is to explore a network operations workflow in which **t
 
 The diagram shows the current EVE-NG lab.
 
-![Cisco Campus lab topology](images/aut-lab-topology0.png)
+![Cisco Campus lab topology](images/aut-lab-topology1.png)
 
