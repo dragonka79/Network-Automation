@@ -9,7 +9,7 @@ The project explores how **AI, network telemetry, and automation** can work toge
 - **Network automation:** Automate repetitive tasks through APIs, Python, and Ansible.
 - **Telemetry and observability:** Collect and analyze network state, device health, events, and operational data.
 - **Topology awareness:** Build an understanding of network devices, links, routing, and dependencies.
-- **AI-assisted troubleshooting:** Use **locally hosted, vertical** language models to interpret telemetry, correlate symptoms, and help identify root causes.
+- **AI-assisted troubleshooting:** Use **locally hosted** language models to interpret telemetry, correlate symptoms, and help identify root causes.
 - **Controlled remediation:** Explore AI-assisted corrective actions with validation and safeguards.
 - **Reproducible experiments:** Use virtual network environments to simulate failures, test hypotheses, and evaluate automation workflows.
 
@@ -35,7 +35,7 @@ The project explores how **AI, network telemetry, and automation** can work toge
 - VLAN 20 — Server VLAN: Ubuntu Server VM, containerized application stack.
 - VLAN 30 — OOB Management: Ubuntu Server VM, act as the recovery and management network.
 - VLAN 200 — Automation VM: Ubuntu Server VM; source of truth; Github integration
-- VLAN 201 — AI VM: vertical, local LLMs; Ollama; Dual-NIC for possible rented GPU access
+- VLAN 201 — AI VM: local LLMs; Ollama; Dual-NIC for possible rented GPU access
 - VLAN 210 — Telemetry VM: metrics, logs, traces, probes
 - Possible AI VM gateway later on
 
@@ -44,7 +44,7 @@ The project explores how **AI, network telemetry, and automation** can work toge
 - Authenticate and connect from the automation VM to the devices.
 - Retrieve and decode device running configurations, inventory information.
 - Running python(VS Code) and Ansible to retrieve and push configurations.
-- NTP,DHCP, rsyslog on Management VM.
+- NTP, DHCP, rsyslog on Management VM.
 - Save results and configuration output for analysis.
 - Maintain automation code and lab workflows in version control, GitHub connection.
 
