@@ -1,0 +1,13 @@
+[Unit]
+Description=AI Network Lab Client Traffic Generator
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/opt/lab-client/traffic-generator.sh
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

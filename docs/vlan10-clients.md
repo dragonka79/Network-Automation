@@ -44,6 +44,10 @@ Log:
 
 /opt/lab-client/logs/traffic.log
 
+Traffic generator service:
+
+lab-client-traffic.service
+
 Current traffic generated every 30 seconds:
 
 1. ICMP to VLAN 10 gateway
