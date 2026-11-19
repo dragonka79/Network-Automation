@@ -6,29 +6,29 @@ Management network: **VLAN 30 - `10.0.30.0/24`**
 
 | Device Name | Management IP |
 |---|---|
-| `access-1` | `10.0.30.11` |
-| `access-2` | `10.0.30.12` |
+| `Access-1` | `10.0.30.11` |
+| `Access-2` | `10.0.30.12` |
 
 ## Distribution Layer
 
 | Device Name | Management IP |
 |---|---|
-| `dist-1` | `10.0.30.2` |
-| `dist-2` | `10.0.30.3` |
+| `Dist-1` | `10.0.30.2` |
+| `Dist-2` | `10.0.30.3` |
 
 ## Core Layer
 
 | Device Name | Management IP |
 |---|---|
-| `core-1` | `10.0.30.101` |
-| `core-2` | `10.0.30.102` |
+| `Core-1` | `10.0.30.101` |
+| `Core-2` | `10.0.30.102` |
 
 ## Edge Transit Layer
 
 | Device Name | Management IP |
 |---|---|
-| `TR_L3_1` | `10.0.30.111` |
-| `TR_L3_2` | `10.0.30.112` |
+| `transit-1` | `10.0.30.111` |
+| `transit-2` | `10.0.30.112` |
 
 ## Firewalls
 
@@ -41,8 +41,8 @@ Management network: **VLAN 30 - `10.0.30.0/24`**
 
 | Device Name | Management IP |
 |---|---|
-| `MGMT-1` | `10.0.30.21` |
-| `MGMT-2` | `10.0.30.22` |
+| `Mgmt-1` | `10.0.30.21` |
+| `Mgmt-2` | `10.0.30.22` |
 
 ---
 
