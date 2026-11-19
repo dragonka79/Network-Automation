@@ -4,45 +4,45 @@ Management network: **VLAN 30 - `10.0.30.0/24`**
 
 ## Access
 
-| Device | Management IP | SSH |
+| Device | Management IP |
 |---|---:|---|
-| Access-1 | `10.0.30.11` | `ssh access-1` |
-| Access-2 | `10.0.30.12` | `ssh access-2` |
+| Access-1 | `10.0.30.11` |
+| Access-2 | `10.0.30.12` |
 
 ## Distribution
 
-| Device | Management IP | SSH |
+| Device | Management IP |
 |---|---:|---|
-| Dist-1 | `10.0.30.2` | `ssh dist-1` |
-| Dist-2 | `10.0.30.3` | `ssh dist-2` |
+| Dist-1 | `10.0.30.2` |
+| Dist-2 | `10.0.30.3` |
 
 ## Core
 
-| Device | Management IP | SSH |
+| Device | Management IP |
 |---|---:|---|
-| Core-1 | `10.0.30.101` | `ssh core-1` |
-| Core-2 | `10.0.30.102` | `ssh core-2` |
+| Core-1 | `10.0.30.101` |
+| Core-2 | `10.0.30.102` |
 
 ## Edge Transit
 
-| Device | Management IP | SSH |
+| Device | Management IP |
 |---|---:|---|
-| TR_L3_1 | `10.0.30.111` | `ssh transit-1` |
-| TR_L3_2 | `10.0.30.112` | `ssh transit-2` |
+| TR_L3_1 | `10.0.30.111` |
+| TR_L3_2 | `10.0.30.112` |
 
 ## Firewalls
 
-| Device | Management IP | SSH |
+| Device | Management IP |
 |---|---:|---|
-| ASAv | `10.0.30.201` | `ssh asav` |
-| FortiGate | `10.0.30.202` | `ssh fgt` |
+| ASAv | `10.0.30.201` |
+| FortiGate | `10.0.30.202` |
 
 ## Management
 
-| Device | Management IP | SSH |
+| Device | Management IP |
 |---|---:|---|
-| MGMT-1 | `10.0.30.21` | `ssh mgmt-1` |
-| MGMT-2 | `10.0.30.22` | `ssh mgmt-2` |
+| MGMT-1 | `10.0.30.21` |
+| MGMT-2 | `10.0.30.22` |
 
 ---
 
