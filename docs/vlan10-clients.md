@@ -83,7 +83,7 @@ sudo tcpdump -ni any 'icmp or port 53 or port 80 or port 443'
 - [x] Traffic generator
 - [x] VLAN 20 Nginx HTTP traffic
 - [x] systemd service
-- [ ] Client-specific traffic profile
+- [x] Client-specific traffic profile
 - [ ] Fault simulation
 
 

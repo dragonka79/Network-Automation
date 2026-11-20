@@ -1,32 +1,39 @@
 #!/bin/bash
 
+CONFIG="/opt/lab-client/client.conf"
 LOG="/opt/lab-client/logs/traffic.log"
+
+if [[ ! -f "$CONFIG" ]]; then
+    echo "Missing configuration: $CONFIG"
+    exit 1
+fi
+
+source "$CONFIG"
 
 while true; do
 
-    echo "===== $(date -Is) =====" >> "$LOG"
+    echo "===== $(date -Is) client=$CLIENT_NAME profile=$PROFILE =====" >> "$LOG"
 
-    # Default gateway
-    ping -c 1 -W 2 10.0.10.1 >> "$LOG" 2>&1
+    # Gateway connectivity
+    ping -c 1 -W 2 "$GATEWAY" >> "$LOG" 2>&1
 
     # DNS
-    dig +short google.com >> "$LOG" 2>&1
+    dig +short "$DNS_TEST" >> "$LOG" 2>&1
 
     # Internet HTTPS
     curl -sS \
         --max-time 10 \
         -o /dev/null \
         -w "Internet HTTPS: HTTP=%{http_code} time=%{time_total}s\n" \
-        https://www.google.com >> "$LOG" 2>&1
+        "$INTERNET_URL" >> "$LOG" 2>&1
 
     # VLAN 20 application
     curl -sS \
         --max-time 5 \
         -o /dev/null \
         -w "VLAN20 APP: HTTP=%{http_code} time=%{time_total}s\n" \
-        http://10.0.20.50 >> "$LOG" 2>&1
+        "$VLAN20_URL" >> "$LOG" 2>&1
 
-    sleep 30
+    sleep "$INTERVAL"
 
 done
-
