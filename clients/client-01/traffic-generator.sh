@@ -34,13 +34,13 @@ while true; do
         -w "VLAN20 APP: HTTP=%{http_code} time=%{time_total}s\n" \
         "$VLAN20_URL" >> "$LOG" 2>&1
 
-    sleep "$INTERVAL"
-
     # VLAN 20 FastAPI health check
     curl -sS \
         --max-time 5 \
         -o /dev/null \
         -w "VLAN20 API Health: HTTP=%{http_code} time=%{time_total}s\n" \
         "$API_HEALTH_URL" >> "$LOG" 2>&1
+
+    sleep "$INTERVAL"
 done
 
