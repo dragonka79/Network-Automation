@@ -54,6 +54,7 @@ Current traffic generated every 30 seconds:
 2. DNS lookup for google.com
 3. HTTPS request to Internet
 4. HTTP request to VLAN 20 Nginx server
+5. FastAPI health check to VLAN 20 server
 
 VLAN 20 server:
 
@@ -82,6 +83,7 @@ sudo tcpdump -ni any 'icmp or port 53 or port 80 or port 443'
 - [x] Basic troubleshooting tools
 - [x] Traffic generator
 - [x] VLAN 20 Nginx HTTP traffic
+- [x] VLAN 20 FastAPI health check 
 - [x] systemd service
 - [x] Client-specific traffic profile
 - [ ] Fault simulation

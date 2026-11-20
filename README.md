@@ -79,6 +79,11 @@ Network-Automation/
     ├── inventory
     ├── playbooks          
 ├── configs/  
+├── clients/ 
+├── servers/ 
+├── diagrams/ 
+├── docs/
+├── images/  
 ├── incidents/           # Incident documentation
 ├── pki/                 # PKI-related lab files
 ├── .env                 # Local credentials (not committed)

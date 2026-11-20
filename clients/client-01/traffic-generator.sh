@@ -36,4 +36,11 @@ while true; do
 
     sleep "$INTERVAL"
 
+    # VLAN 20 FastAPI health check
+    curl -sS \
+        --max-time 5 \
+        -o /dev/null \
+        -w "VLAN20 API Health: HTTP=%{http_code} time=%{time_total}s\n" \
+        "$API_HEALTH_URL" >> "$LOG" 2>&1
 done
+
