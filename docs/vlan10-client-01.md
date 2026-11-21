@@ -86,6 +86,7 @@ sudo tcpdump -ni any 'icmp or port 53 or port 80 or port 443'
 - [x] VLAN 20 FastAPI health check 
 - [x] systemd service
 - [x] Client-specific traffic profile
+- [ ] optional additional user traffic later
 - [ ] Fault simulation
 
 
