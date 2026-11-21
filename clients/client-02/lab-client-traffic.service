@@ -1,0 +1,15 @@
+# /etc/systemd/system/lab-client-traffic.service systemd unit starts the traffic-generator.sh automatically and restarts if it fails.
+
+[Unit]
+Description=AI Network Lab Client-02 Traffic Generator
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/opt/lab-client/traffic-generator.sh
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
