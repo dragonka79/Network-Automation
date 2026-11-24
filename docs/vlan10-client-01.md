@@ -127,5 +127,6 @@ sudo tcpdump -ni any 'icmp or port 53 or port 80 or port 443 or port 8000'
 - [x] systemd service
 - [x] Client-specific traffic profile
 - [x] Logrotate for traffic logs
+- [ ] Log forwarding to the central log server
 - [ ] Optional additional user traffic later
 

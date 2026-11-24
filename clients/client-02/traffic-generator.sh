@@ -56,6 +56,15 @@ while true; do
             "$INTERNET_URL" >> "$LOG" 2>&1
     fi
 
+    # 7.Small file download - every 15th cycle (~5 minutes)
+    if (( iteration % 15 == 0 )); then
+        curl -sS \
+            --max-time 30 \
+            -o /dev/null \
+            -w "File Download: HTTP=%{http_code} size=%{size_download} time=%{time_total}s speed=%{speed_download}B/s\n" \
+            "$FILE_URL" >> "$LOG" 2>&1
+    fi
+
     sleep "$INTERVAL"
 
 done
