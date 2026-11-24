@@ -1,0 +1,35 @@
+---
+- name: Configure log rotation for VLAN 10 lab clients
+  hosts: vlan10_clients
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: Install lab client logrotate configuration
+      ansible.builtin.template:
+        src: ../../templates/lab-client-logrotate.j2
+        dest: /etc/logrotate.d/lab-client
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: Validate logrotate configuration
+      ansible.builtin.command:
+        cmd: logrotate -d /etc/logrotate.d/lab-client
+      register: logrotate_validation
+      changed_when: false
+
+    - name: Verify logrotate timer is enabled
+      ansible.builtin.command:
+        cmd: systemctl is-enabled logrotate.timer
+      register: logrotate_timer
+      changed_when: false
+      failed_when: logrotate_timer.stdout != "enabled"
+
+    - name: Verify logrotate timer is active
+      ansible.builtin.command:
+        cmd: systemctl is-active logrotate.timer
+      register: logrotate_timer_active
+      changed_when: false
+      failed_when: logrotate_timer_active.stdout != "active"
+
