@@ -75,6 +75,20 @@ while true; do
             "hostname && uptime" >> "$LOG" 2>&1
     fi
 
+    # 9.Controlled UDP traffic burst - every 30th cycle (~10 minutes)
+    if (( iteration % 30 == 0 )); then
+        echo "Controlled Traffic Burst: START bandwidth=$IPERF_BANDWIDTH duration=${IPERF_DURATION}s" >> "$LOG"
+
+        iperf3 \
+            -c "$IPERF_SERVER" \
+            -u \
+            -b "$IPERF_BANDWIDTH" \
+            -t "$IPERF_DURATION" >> "$LOG" 2>&1
+
+        echo "Controlled Traffic Burst: END" >> "$LOG"
+    fi
+
     sleep "$INTERVAL"
 
 done
+
