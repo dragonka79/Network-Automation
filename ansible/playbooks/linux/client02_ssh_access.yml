@@ -1,0 +1,51 @@
+---
+# 1. creates Client-02's dedicated SSH key if missing,
+# 2. reads its public key,
+# 3. installs that public key on ubuntu-server,
+# 4. verifies SSH access.
+
+# !Note: This is idempotent. Running it again should not keep creating new keys or duplicate entries in authorized_keys.
+# Usage: ansible-playbook playbooks/linux/client02_ssh_access.yml
+# Test: From Client-02 run: ssh -i ~/.ssh/lab_client02_ed25519 \
+#     zolcs@ubuntu-server.lab.local hostname
+
+- name: Create Client-02 SSH key
+  hosts: client-02
+  gather_facts: false
+  become: false
+
+  tasks:
+    - name: Ensure .ssh directory exists
+      ansible.builtin.file:
+        path: /home/zolcs/.ssh
+        state: directory
+        owner: zolcs
+        group: zolcs
+        mode: "0700"
+
+    - name: Generate dedicated Client-02 SSH key
+      community.crypto.openssh_keypair:
+        path: /home/zolcs/.ssh/lab_client02_ed25519
+        type: ed25519
+        owner: zolcs
+        group: zolcs
+        mode: "0600"
+        comment: "client-02 lab traffic"
+      register: client02_key
+
+    - name: Store public key for next play
+      ansible.builtin.set_fact:
+        client02_public_key: "{{ client02_key.public_key }}"
+
+
+- name: Authorize Client-02 on VLAN 20 server
+  hosts: ubuntu-server
+  gather_facts: false
+  become: false
+
+  tasks:
+    - name: Install Client-02 public key
+      ansible.posix.authorized_key:
+        user: zolcs
+        state: present
+        key: "{{ hostvars['client-02']['client02_public_key'] }}"

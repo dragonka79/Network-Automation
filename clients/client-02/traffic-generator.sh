@@ -65,6 +65,16 @@ while true; do
             "$FILE_URL" >> "$LOG" 2>&1
     fi
 
+    # 8.SSH session - every 15th cycle (~5 minutes)
+    if (( iteration % 15 == 0 )); then
+        ssh \
+            -i "$SSH_KEY" \
+            -o BatchMode=yes \
+            -o ConnectTimeout=5 \
+            "$SSH_USER@$SSH_HOST" \
+            "hostname && uptime" >> "$LOG" 2>&1
+    fi
+
     sleep "$INTERVAL"
 
 done

@@ -7,6 +7,8 @@ Wants=network-online.target
 
 [Service]
 Type=simple
+User=zolcs
+Group=zolcs
 ExecStart=/opt/lab-client/traffic-generator.sh
 Restart=on-failure
 RestartSec=10

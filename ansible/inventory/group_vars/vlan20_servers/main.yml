@@ -1,0 +1,5 @@
+---
+ansible_connection: ssh
+ansible_network_os: null
+ansible_user: zolcs
+ansible_become_method: sudo
