@@ -1,8 +1,7 @@
+#!/bin/bash
 
 # Stop all VMs one by one listed in VMS list
 # /root/stop-vms.sh
-
-#!/bin/bash
 
 VMS=(100 101 103 104 105 106)
 
