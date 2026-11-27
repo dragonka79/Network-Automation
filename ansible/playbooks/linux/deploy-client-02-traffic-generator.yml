@@ -1,0 +1,22 @@
+---
+- name: Deploy Client-02 traffic generator with syslog events
+  hosts: client-02
+  become: true
+
+  tasks:
+    - name: Deploy Client-02 traffic generator
+      ansible.builtin.copy:
+        src: ../../../clients/client-02/traffic-generator.sh
+        dest: /opt/lab-client/traffic-generator.sh
+        owner: root
+        group: root
+        mode: "0755"
+        backup: true
+        validate: "bash -n %s"
+      notify: Restart lab client traffic generator
+
+  handlers:
+    - name: Restart lab client traffic generator
+      ansible.builtin.systemd:
+        name: lab-client-traffic.service
+        state: restarted

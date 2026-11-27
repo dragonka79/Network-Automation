@@ -1,0 +1,25 @@
+---
+- name: Configure lab-client rsyslog forwarding
+  hosts: client-02
+  become: true
+
+  tasks:
+    - name: Deploy lab-client rsyslog forwarding configuration
+      ansible.builtin.template:
+        src: ../../templates/50-lab-client-forwarding.conf.j2
+        dest: /etc/rsyslog.d/50-lab-client-forwarding.conf
+        owner: root
+        group: root
+        mode: "0644"
+      notify: Restart rsyslog
+
+    - name: Validate rsyslog configuration
+      ansible.builtin.command:
+        cmd: rsyslogd -N1
+      changed_when: false
+
+  handlers:
+    - name: Restart rsyslog
+      ansible.builtin.service:
+        name: rsyslog
+        state: restarted
